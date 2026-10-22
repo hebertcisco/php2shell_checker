@@ -14,9 +14,26 @@
 
 `src/infrastructure` contains adapters for repository files and parsers. Filesystem access and syntax-specific parsing belong here so the application layer can remain easy to test.
 
+The current parser adapter reads `.php-version`, PHP entries in `.tool-versions`, `composer.json` `require.php`, `composer.json` `config.platform.php`, and `composer.lock` `platform.php`.
+
 ## Reporting
 
 `src/reporting` converts the domain report into user-facing formats. Reporters must preserve stable finding codes, evidence, ordering, and remediation details.
+
+The current reporters are `table` for human-readable findings and `json` for serialized `AnalysisReport` data.
+
+## Analysis flow
+
+```text
+scan path
+  -> collect supported version observations
+  -> load embedded or custom advisory
+  -> evaluate exact, range, floating, and EOL states
+  -> sort findings deterministically
+  -> render table or JSON
+```
+
+The default advisory is embedded at compile time. A custom advisory path is an explicit CLI override and does not enable network access.
 
 ## Safety boundaries
 

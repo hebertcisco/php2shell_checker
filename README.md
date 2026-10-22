@@ -17,7 +17,28 @@ This project is in early development. The current implementation provides:
 
 Docker, CI providers, framework fingerprinting, PHP configuration, extension analysis, SARIF, baselines, and additional advisory sources are planned.
 
+## Documentation
+
+- [Architecture](ARCHITECTURE.md) — layers, data flow, and safety boundaries;
+- [CLI reference](docs/cli.md) — commands, options, and output behavior;
+- [Advisory authoring](docs/advisories.md) — the TOML schema and version policy;
+- [Testing guide](docs/testing.md) — local checks and fixture expectations;
+- [Contributing](CONTRIBUTING.md) — how to extend the analyzer;
+- [Security policy](SECURITY.md) — how to report vulnerabilities.
+
 ## Installation
+
+### Homebrew
+
+Once the formula is published in the project tap:
+
+```sh
+brew tap hebertcisco/php2shell-checker
+brew install php2shell-checker
+php2shell_checker --help
+```
+
+See [Homebrew documentation](docs/homebrew.md) for local formula testing and release maintenance.
 
 ### From source
 
@@ -37,6 +58,8 @@ cargo run -- scan ./repository --format json
 cargo run -- scan ./repository --advisories ./advisories/custom.toml
 ```
 
+The scanner returns exit code `1` when it emits findings, which makes it suitable for CI gates.
+
 ## Exit codes
 
 - `0`: no findings;
@@ -49,6 +72,8 @@ cargo run -- scan ./repository --advisories ./advisories/custom.toml
 Scans are offline by default. The analyzer reads files, evaluates configuration, and emits findings. It does not run project code, invoke package managers, contact external services, or confirm the runtime artifact that was actually deployed.
 
 The bundled advisory is stored in `advisories/php2shell.toml` and compiled into the binary with `include_str!`.
+
+Use `--advisories` to load an alternate advisory file. The current implementation reads only the four version sources listed above; it does not yet walk the entire repository.
 
 ## Development
 
