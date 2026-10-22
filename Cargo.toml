@@ -5,7 +5,10 @@ edition = "2021"
 license = "MIT"
 rust-version = "1.80"
 description = "Static PHP runtime exposure and misconfiguration analyzer"
-keywords = ["php", "security", "static-analysis", "vulnerability-scanner", "sast"]
+homepage = "https://github.com/hebertcisco/php2shell_checker"
+repository = "https://github.com/hebertcisco/php2shell_checker"
+documentation = "https://docs.rs/php2shell_checker"
+keywords = ["php", "security", "static-analysis", "vulnerability", "sast"]
 categories = ["command-line-utilities", "development-tools", "security"]
 
 [[bin]]
