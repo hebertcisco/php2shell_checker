@@ -1,0 +1,22 @@
+[package]
+name = "php2shell_checker"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+rust-version = "1.80"
+description = "Static PHP runtime exposure and misconfiguration analyzer"
+keywords = ["php", "security", "static-analysis", "vulnerability-scanner", "sast"]
+categories = ["command-line-utilities", "development-tools", "security"]
+
+[[bin]]
+name = "php2shell_checker"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "1"
+toml = "0.8"
+

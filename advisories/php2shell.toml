@@ -1,0 +1,31 @@
+id = "PHP2Shell"
+aliases = ["CVE-2026-109618", "CVE-2026-109619"]
+severity = "critical"
+mitigations = ["Upgrade to the first fixed release for the detected branch.", "Use bounded request memory and recycle long-lived workers."]
+references = ["https://www.php.net/", "https://cve.mitre.org/"]
+
+[[affected]]
+branch = "8.2"
+range = "<8.2.35"
+first_fixed = "8.2.35"
+
+[[affected]]
+branch = "8.3"
+range = "<8.3.36"
+first_fixed = "8.3.36"
+
+[[affected]]
+branch = "8.4"
+range = "<8.4.27"
+first_fixed = "8.4.27"
+
+[[affected]]
+branch = "8.5"
+range = "<8.5.12"
+first_fixed = "8.5.12"
+
+[[affected]]
+branch = "8.1-or-older"
+range = "*"
+status = "unverified_eol"
+
